@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@500&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Noto Sans KR";
+  font-size: medium;
+  color: black;
+  background-color: unset;
+}
+
+#container {
+  width: 600px;
+  height: 100vh;
+  background-color: white;
+  margin: 0 auto;
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.orderBtnGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.orderBtnGroup > div {
+  display: flex;
+}
+
+.orderBtn {
+  width: 25%;
+  height: 75px;
+  background-color: lightgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgrey;
+}
+
+.orderBtnGroup > div:nth-child(2n + 1) > .orderBtn:nth-child(2n) {
+  background-color: darkgrey;
+}
+
+.orderBtnGroup > div:nth-child(2n) > .orderBtn:nth-child(2n + 1) {
+  background-color: darkgrey;
+}
+
+.selectOrder {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgrey;
+}
+
+article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 300px;
+  height: 200px;
+  border-radius: 15px;
+  margin: 20px;
+  padding: 20px;
+  background-color: white;
+  border: 5px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.5);
+
+  font-size: xx-large;
+  font-family: Black Han Sans;
+}
+
+.hide {
+  display: none;
+}
+
+footer {
+  width: 100%;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+footer > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer > div:nth-child(2) {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: lightgrey;
+}
+
+#remindInput {
+  width: 500px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 15px;
+  background-color: white;
+  border: 2px solid black;
+}
+
+#shuffleBtn,
+#remindBtn {
+  width: 250px;
+  height: 75px;
+  background-color: darkgrey;
+}
+
+@media (max-width: 600px) {
+  #container {
+    margin: 0;
+    width: 100vw;
+  }
+  #remindInput {
+    width: 83vw;
+  }
+  #shuffleBtn,
+  #remindBtn {
+    width: 42vw;
+  }
+}
