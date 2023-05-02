@@ -12,6 +12,7 @@ function openHtml() {
   const orderBtnGroup = document.querySelector(".orderBtnGroup");
   const orderBtns = document.getElementsByClassName("orderBtn");
   const selectOrder = document.querySelector(".selectOrder");
+  const errorMessage = document.querySelector(".error");
 
   shuffleBtn.addEventListener("click", clickShuffle);
   remindBtn.addEventListener("click", clickRemind);
@@ -34,7 +35,7 @@ function openHtml() {
       shuffled = true;
       cardWrite();
     } catch {
-      remindInput.value = "잘못된 코드입니다.";
+      errorMessage.textContent = "잘못된 코드입니다.";
     }
   }
 
@@ -51,6 +52,9 @@ function openHtml() {
   function cardWrite() {
     if (order != -1) {
       card.textContent = numbers[order];
+      errorMessage.textContent = "";
+    } else {
+      errorMessage.textContent = "상단에서 자신에게 부여된 번호를 선택햐야 정상 작동합니다.";
     }
   }
 }
