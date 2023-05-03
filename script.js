@@ -1,61 +1,51 @@
 openHtml();
 
-let numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-let order = -1;
-let shuffled = false;
-
 function openHtml() {
-  const shuffleBtn = document.querySelector("#shuffleBtn");
-  const remindInput = document.querySelector("#remindInput");
-  const remindBtn = document.querySelector("#remindBtn");
-  const card = document.querySelector(".card");
-  const orderBtnGroup = document.querySelector(".orderBtnGroup");
-  const orderBtns = document.getElementsByClassName("orderBtn");
-  const selectOrder = document.querySelector(".selectOrder");
-  const errorMessage = document.querySelector(".error");
+  let numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+  let maxNumber = 3;
+  let yourOrder = -1;
 
-  shuffleBtn.addEventListener("click", clickShuffle);
-  remindBtn.addEventListener("click", clickRemind);
-  for (let i = 0; i < orderBtns.length; i++) {
-    orderBtns.item(i).addEventListener("click", clickOrder);
+  howButton();
+  setNumber();
+  tabCreateOrJoin();
+
+  function howButton() {
+    document.querySelector(".howBtn").addEventListener("click", () => {
+      removeClassToElement(document.querySelector(".howTo"));
+    });
+    document.querySelector(".howCloseBtn").addEventListener("click", () => {
+      addClassToElement(document.querySelector(".howTo"));
+    });
   }
 
-  function clickShuffle(event) {
-    event.preventDefault();
-    numbers = arrayShuffle(numbers);
-    remindInput.value = encrypt(numbers);
-    shuffled = true;
-    cardWrite();
+  function tabCreateOrJoin() {
+    document.querySelector(".createTabBtn").addEventListener("click", () => {
+      removeClassToElement(document.querySelector(".create"));
+      addClassToElement(document.querySelector(".join"));
+      addClassToElement(document.querySelector(".createTabBtn"), "select");
+      removeClassToElement(document.querySelector(".joinTabBtn"), "select");
+    });
+    document.querySelector(".joinTabBtn").addEventListener("click", () => {
+      addClassToElement(document.querySelector(".create"));
+      removeClassToElement(document.querySelector(".join"));
+      removeClassToElement(document.querySelector(".createTabBtn"), "select");
+      addClassToElement(document.querySelector(".joinTabBtn"), "select");
+    });
   }
 
-  function clickRemind(event) {
-    event.preventDefault();
-    try {
-      numbers = decrypt(remindInput.value);
-      shuffled = true;
-      cardWrite();
-    } catch {
-      errorMessage.textContent = "잘못된 코드입니다.";
-    }
-  }
-
-  function clickOrder(event) {
-    selectOrder.textContent = this.textContent;
-    order = Number(this.value) - 1;
-    hideElement(orderBtnGroup);
-    displayElement(selectOrder);
-    if (shuffled) {
-      cardWrite();
-    }
-  }
-
-  function cardWrite() {
-    if (order != -1) {
-      card.textContent = numbers[order];
-      errorMessage.textContent = "";
-    } else {
-      errorMessage.textContent = "상단에서 자신에게 부여된 번호를 선택햐야 정상 작동합니다.";
-    }
+  function setNumber() {
+    document.querySelector(".setNumberMinus").addEventListener("click", () => {
+      if (maxNumber > 3) {
+        maxNumber -= 1;
+        document.querySelector(".setNumberNow").textContent = maxNumber;
+      }
+    });
+    document.querySelector(".setNumberPlus").addEventListener("click", () => {
+      if (maxNumber < 10) {
+        maxNumber += 1;
+        document.querySelector(".setNumberNow").textContent = maxNumber;
+      }
+    });
   }
 }
 
@@ -77,10 +67,10 @@ function arrayShuffle(array) {
   return array;
 }
 
-function hideElement(el) {
-  el.classList.add("hide");
+function addClassToElement(el, cl = "hide") {
+  el.classList.add(cl);
 }
 
-function displayElement(el) {
-  el.classList.remove("hide");
+function removeClassToElement(el, cl = "hide") {
+  el.classList.remove(cl);
 }
