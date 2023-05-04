@@ -140,10 +140,10 @@ function pageMain(arrs, order, ID) {
       nowOrder--;
       removeClassToElement(cardset.item(nowOrder - 1));
       document.querySelector(".order").textContent = nowOrder;
-      if (order === nowOrder) {
-        removeClassToElement(document.querySelector(".youArePD"));
-      } else {
+      if (order != nowOrder) {
         addClassToElement(document.querySelector(".youArePD"));
+      } else {
+        removeClassToElement(document.querySelector(".youArePD"));
       }
     }
   });
