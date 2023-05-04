@@ -11,11 +11,17 @@
   background-color: unset;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightpink;
+}
+
 #container {
   width: 600px;
   height: 100vh;
   background-color: white;
-  margin: 0 auto;
   box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.5);
   overflow-y: auto;
   display: flex;
@@ -23,125 +29,334 @@
   justify-content: space-between;
 }
 
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+footer {
+  width: 100%;
+  height: 75px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  width: 100%;
+  padding: 20px;
+  font-size: 45px;
+  font-family: Black Han Sans;
+  color: lightpink;
+  background-color: black;
+  text-align: center;
+}
+
+h2 {
+  font-size: x-large;
+}
+
+.create,
+.join {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.setOrderNumber {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.setOrderNumberNow {
+  width: 60px;
+  height: 40px;
+  border-radius: 25px;
+  border: 3px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+}
+
+.setOrderNumberMinus,
+.setOrderNumberPlus {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: black;
+  color: lightpink;
+  box-shadow: inset 0 0 0 3px black, inset 0 0 0 5px lightpink;
+  font-size: x-large;
+  margin: 5px;
+}
+
+.thisIDtab {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thisIDtab p {
+  color: lightpink;
+}
+
+.thisID {
+  width: 85%;
+  height: 40px;
+  margin: 10px;
+  border-radius: 15px;
+  background-color: black;
+  color: lightpink;
+  border: 3px solid lightpink;
+}
+
+.selectCreateOrJoin {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.joinInput {
+  width: 85%;
+  height: 40px;
+  margin: 10px;
+  border-radius: 15px;
+  background-color: white;
+  border: 3px solid black;
+}
+
+.createTabBtn,
+.joinTabBtn {
+  width: 50%;
+  height: 75px;
+  background-color: lightpink;
+  color: black;
+}
+
+.createTabBtn.select,
+.joinTabBtn.select {
+  background-color: black;
+  color: lightpink;
+  box-shadow: inset 0 0 0 3px black, inset 0 0 0 5px lightpink;
+}
+
+.whatYourOrder,
+.whatJoinOrder {
+  width: 100%;
+  padding: 0 20px;
+}
+
 .orderBtnGroup {
+  width: 100%;
+  margin: 10px 0;
   display: flex;
   flex-direction: column;
 }
 
 .orderBtnGroup > div {
+  width: 100%;
   display: flex;
 }
 
 .orderBtn {
   width: 25%;
-  height: 75px;
-  background-color: lightgrey;
+  height: 80px;
+  color: lightpink;
+  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightgrey;
 }
 
-.orderBtnGroup > div:nth-child(2n + 1) > .orderBtn:nth-child(2n) {
-  background-color: darkgrey;
+p > .orderBtn {
+  width: auto;
+  height: auto;
+  color: black;
+  background-color: unset;
+  display: inline;
 }
 
-.orderBtnGroup > div:nth-child(2n) > .orderBtn:nth-child(2n + 1) {
-  background-color: darkgrey;
-}
-
-.selectOrder {
+.whatOrder {
   width: 100%;
-  height: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: lightgrey;
 }
 
-article {
+.orderBtnGroup > div:nth-child(2n + 1) > .orderBtn:nth-child(2n),
+.orderBtnGroup > div:nth-child(2n) > .orderBtn:nth-child(2n + 1) {
+  color: black;
+  background-color: lightpink;
+}
+
+.orderBtnGroup > div > .orderBtn.select {
+  background-color: black;
+  border: 3px solid black;
+  color: lightpink;
+  box-shadow: inset 0 0 0 2px lightpink;
+}
+
+.orderBtnGroup > div:nth-child(2n + 1) > .orderBtn.select:nth-child(2n),
+.orderBtnGroup > div:nth-child(2n) > .orderBtn.select:nth-child(2n + 1) {
+  background-color: lightpink;
+  border: 2px solid lightpink;
+  color: black;
+  box-shadow: inset 0 0 0 3px black;
+}
+
+.orderBtnGroup > div > .orderBtn.disabled {
+  background-color: darkgrey !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: lightgrey !important;
+}
+
+p > .orderBtn.select {
+  color: lightpink;
+}
+
+.setOrderNumber {
+  display: flex;
+  flex-direction: row;
+}
+
+.joinInputTray {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.howBtn,
+.createBtn,
+.joinBtn {
+  width: 150px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 15px;
+  background-color: black;
+  color: lightpink;
+  box-shadow: inset 0 0 0 3px black, inset 0 0 0 5px lightpink;
+}
+
+.howCloseBtn {
+  width: 150px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 15px;
+  background-color: white;
+  border: 3px solid black;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main > div {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main > div > p {
+  font-size: large;
+}
+
+.main > .cardTray {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.cardSet {
+  display: flex;
 }
 
 .card {
   width: 300px;
   height: 200px;
   border-radius: 15px;
-  margin: 20px;
   padding: 20px;
   background-color: white;
-  border: 5px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.5), inset 0 0 0 2px lightpink, inset 0 0 0 5px black;
+  font-size: xx-large;
+  font-family: Black Han Sans;
+  background-color: lightpink;
+  color: black;
+}
+
+.leftCard,
+.rightCard {
+  width: 25%;
+  height: 150px;
+  font-size: xx-large;
+}
+
+.howTo {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.5);
+}
 
-  font-size: xx-large;
-  font-family: Black Han Sans;
+.howTo > section {
+  display: flex;
+  border: 3px solid black;
+  border-radius: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+  background-color: white;
+}
+
+.howArticle {
+  width: 100%;
+  padding: 20px;
+}
+
+.whatJoinID {
+  width: 100%;
+  height: 30px;
+  padding: 0 20px;
+}
+
+.errorCode {
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
 }
 
 .hide {
   display: none;
 }
 
-footer {
-  width: 100%;
-  height: 160px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-
-footer > div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-footer > div:nth-child(3) {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: lightgrey;
-}
-
-#remindInput {
-  width: 500px;
-  height: 40px;
-  margin: 10px;
-  border-radius: 15px;
-  background-color: white;
-  border: 2px solid black;
-}
-
-#shuffleBtn,
-#remindBtn {
-  width: 250px;
-  height: 75px;
-  background-color: darkgrey;
-}
-
-.error {
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 @media (max-width: 600px) {
   #container {
-    margin: 0;
     width: 100vw;
-  }
-  #remindInput {
-    width: 83vw;
-  }
-  #shuffleBtn,
-  #remindBtn {
-    width: 42vw;
   }
 }

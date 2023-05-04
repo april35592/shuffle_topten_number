@@ -1,61 +1,181 @@
-openHtml();
+openHTML();
 
-let numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-let order = -1;
-let shuffled = false;
+function openHTML() {
+  titleBtn();
+  howBtn();
+  pageCreateOrJoin();
+}
 
-function openHtml() {
-  const shuffleBtn = document.querySelector("#shuffleBtn");
-  const remindInput = document.querySelector("#remindInput");
-  const remindBtn = document.querySelector("#remindBtn");
-  const card = document.querySelector(".card");
-  const orderBtnGroup = document.querySelector(".orderBtnGroup");
+function titleBtn() {
+  document.querySelector("h1").addEventListener("click", () => {
+    location.reload();
+  });
+}
+
+function howBtn() {
+  document.querySelector(".howBtn").addEventListener("click", () => {
+    removeClassToElement(document.querySelector(".howTo"));
+  });
+  document.querySelector(".howCloseBtn").addEventListener("click", () => {
+    addClassToElement(document.querySelector(".howTo"));
+  });
+  document.querySelector(".howTo").addEventListener("click", e => {
+    if (e.target === document.querySelector(".howTo")) {
+      addClassToElement(document.querySelector(".howTo"));
+    }
+  });
+}
+
+function pageCreateOrJoin() {
+  tabCreateOrJoin();
+  createGame();
+  joinGame();
+}
+
+function tabCreateOrJoin() {
+  document.querySelector(".createTabBtn").addEventListener("click", () => {
+    removeClassToElement(document.querySelector(".create"));
+    addClassToElement(document.querySelector(".join"));
+    addClassToElement(document.querySelector(".createTabBtn"), "select");
+    removeClassToElement(document.querySelector(".joinTabBtn"), "select");
+  });
+  document.querySelector(".joinTabBtn").addEventListener("click", () => {
+    addClassToElement(document.querySelector(".create"));
+    removeClassToElement(document.querySelector(".join"));
+    removeClassToElement(document.querySelector(".createTabBtn"), "select");
+    addClassToElement(document.querySelector(".joinTabBtn"), "select");
+  });
+}
+
+function createGame() {
+  let maxNumber = 3;
+
+  document.querySelector(".setOrderNumberMinus").addEventListener("click", () => {
+    if (maxNumber > 3) {
+      maxNumber -= 1;
+      document.querySelector(".setOrderNumberNow").textContent = maxNumber;
+    }
+  });
+  document.querySelector(".setOrderNumberPlus").addEventListener("click", () => {
+    if (maxNumber < 9) {
+      maxNumber += 1;
+      document.querySelector(".setOrderNumberNow").textContent = maxNumber;
+    }
+  });
+
+  document.querySelector(".createBtn").addEventListener("click", () => {
+    const numbers = [];
+    for (let i = 0; i < maxNumber; i++) {
+      numbers.push(arrayShuffle(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]));
+    }
+    pageMain(numbers, 1, encrypt(numbers));
+  });
+}
+
+function joinGame() {
+  let order = -1;
+  let numbers = [];
+  let error = true;
   const orderBtns = document.getElementsByClassName("orderBtn");
-  const selectOrder = document.querySelector(".selectOrder");
-  const errorMessage = document.querySelector(".error");
 
-  shuffleBtn.addEventListener("click", clickShuffle);
-  remindBtn.addEventListener("click", clickRemind);
-  for (let i = 0; i < orderBtns.length; i++) {
-    orderBtns.item(i).addEventListener("click", clickOrder);
-  }
-
-  function clickShuffle(event) {
-    event.preventDefault();
-    numbers = arrayShuffle(numbers);
-    remindInput.value = encrypt(numbers);
-    shuffled = true;
-    cardWrite();
-  }
-
-  function clickRemind(event) {
-    event.preventDefault();
+  document.querySelector(".joinInput").addEventListener("input", () => {
     try {
-      numbers = decrypt(remindInput.value);
-      shuffled = true;
-      cardWrite();
+      numbers = decrypt(document.querySelector(".joinInput").value);
+      addClassToElement(document.querySelector(".whatJoinID"));
+      error = false;
+      removeClassToElement(document.querySelector(".whatOrder"));
+      for (let i = 0; i < orderBtns.length; i++) {
+        if (orderBtns.item(i).value > numbers.length) {
+          orderBtns.item(i).classList.add("disabled");
+        }
+      }
     } catch {
-      errorMessage.textContent = "잘못된 코드입니다.";
+      document.querySelector(".whatJoinID").textContent = "> 참가하시려는 게임의 id를 입력해주세요. 잘못된 ID입니다.";
+      removeClassToElement(document.querySelector(".whatJoinID"));
+      numbers = [];
+      error = true;
+      addClassToElement(document.querySelector(".whatOrder"));
     }
+  });
+
+  for (let i = 0; i < orderBtns.length; i++) {
+    orderBtns.item(i).addEventListener("click", e => {
+      for (let j = 0; j < orderBtns.length; j++) {
+        removeClassToElement(orderBtns.item(j), "select");
+      }
+      addClassToElement(e.target, "select");
+      order = e.target.value;
+      addClassToElement(document.querySelector(".whatJoinOrder"));
+    });
   }
 
-  function clickOrder(event) {
-    selectOrder.textContent = this.textContent;
-    order = Number(this.value) - 1;
-    hideElement(orderBtnGroup);
-    displayElement(selectOrder);
-    if (shuffled) {
-      cardWrite();
+  document.querySelector(".joinBtn").addEventListener("click", () => {
+    if (!error && order != -1 && order <= numbers.length) {
+      pageMain(numbers, order, document.querySelector(".joinInput").value);
     }
+  });
+}
+
+function pageMain(arrs, order, ID) {
+  const clipboard = new ClipboardJS(".thisID");
+  let nowOrder = 1;
+  document.querySelector(".thisID").value = ID;
+  document.querySelector(".thisID").setAttribute("data-clipboard-text", ID);
+  paintCard(arrs, order);
+  const cardset = document.getElementsByClassName("card");
+
+  addClassToElement(document.querySelector(".create"));
+  addClassToElement(document.querySelector(".join"));
+  removeClassToElement(document.querySelector(".main"));
+  addClassToElement(document.querySelector(".selectCreateOrJoin"));
+  removeClassToElement(document.querySelector(".thisIDtab"));
+
+  if (order != 1) {
+    addClassToElement(document.querySelector(".youArePD"));
   }
 
-  function cardWrite() {
-    if (order != -1) {
-      card.textContent = numbers[order];
-      errorMessage.textContent = "";
-    } else {
-      errorMessage.textContent = "상단에서 자신에게 부여된 번호를 선택햐야 정상 작동합니다.";
+  document.querySelector(".leftCard").addEventListener("click", () => {
+    if (nowOrder > 1) {
+      addClassToElement(cardset.item(nowOrder - 1));
+      nowOrder--;
+      removeClassToElement(cardset.item(nowOrder - 1));
+      document.querySelector(".order").textContent = nowOrder;
+      if (order === nowOrder) {
+        removeClassToElement(document.querySelector(".youArePD"));
+      } else {
+        addClassToElement(document.querySelector(".youArePD"));
+      }
     }
+  });
+  document.querySelector(".rightCard").addEventListener("click", () => {
+    if (nowOrder < arrs.length) {
+      addClassToElement(cardset.item(nowOrder - 1));
+      nowOrder++;
+      removeClassToElement(cardset.item(nowOrder - 1));
+      document.querySelector(".order").textContent = nowOrder;
+      if (order != nowOrder) {
+        addClassToElement(document.querySelector(".youArePD"));
+      } else {
+        removeClassToElement(document.querySelector(".youArePD"));
+      }
+    }
+  });
+}
+
+function paintCard(arrs, order) {
+  try {
+    for (let i = 1; i < arrs.length; i++) {
+      document.querySelector(".cardSet").append(document.querySelector(".card").cloneNode(true));
+    }
+    const cardset = document.getElementsByClassName("card");
+    for (let i = 0; i < cardset.length; i++) {
+      cardset.item(i).textContent = arrs[i][order - 1];
+      if (i != 0) {
+        addClassToElement(cardset.item(i));
+      }
+    }
+  } catch (err) {
+    document.querySelector(".card").textContent = "잘못된 ID입니다. 다시 처음부터 시도해주세요.";
   }
 }
 
@@ -77,10 +197,10 @@ function arrayShuffle(array) {
   return array;
 }
 
-function hideElement(el) {
-  el.classList.add("hide");
+function addClassToElement(el, cl = "hide") {
+  el.classList.add(cl);
 }
 
-function displayElement(el) {
-  el.classList.remove("hide");
+function removeClassToElement(el, cl = "hide") {
+  el.classList.remove(cl);
 }

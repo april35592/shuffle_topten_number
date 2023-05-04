@@ -8,41 +8,90 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="howTo hide">
+      <section>
+        <h2>How To?</h2>
+        <article class="howArticle">
+          <p>
+            해당 프로그램은 보드게임 탑텐TV를 온라인에서도 즐길 수 있도록 카드 셔플과 분배를 도와주기 위한 도구입니다.
+          </p>
+          <p>되도록 본 게임을 구매한 후 즐기시길 권장하며, 탑텐TV의 문제는 제공되지 않습니다.</p>
+        </article>
+        <button class="howCloseBtn">닫기</button>
+      </section>
+    </div>
+
     <div id="container">
       <header>
-        <div class="selectOrder hide"></div>
-        <div class="orderBtnGroup">
-          <div>
-            <button class="orderBtn" value="1">1st</button>
-            <button class="orderBtn" value="2">2nd</button>
-            <button class="orderBtn" value="3">3rd</button>
-            <button class="orderBtn" value="4">4th</button>
-          </div>
-          <div>
-            <button class="orderBtn" value="5">5th</button>
-            <button class="orderBtn" value="6">6th</button>
-            <button class="orderBtn" value="7">7th</button>
-            <button class="orderBtn" value="8">8th</button>
-          </div>
-        </div>
+        <h1>TOP TEN</h1>
+        <button class="howBtn">How To?</button>
       </header>
-      <article>
-        <div class="card">YOUR NUMBER</div>
-      </article>
+
+      <section class="create">
+        <p>인원수</p>
+        <div class="setOrderNumber">
+          <button class="setOrderNumberMinus">-</button>
+          <div class="setOrderNumberNow">3</div>
+          <button class="setOrderNumberPlus">+</button>
+        </div>
+        <button class="createBtn">게임 생성</button>
+      </section>
+
+      <section class="join hide">
+        <p class="whatJoinID">&gt; 참가하시려는 게임의 id를 입력해주세요.</p>
+        <div class="joinInputTray">
+          <p>id :</p>
+          <input type="text" class="joinInput" autocomplete="off" />
+        </div>
+        <div class="whatOrder hide">
+          <p class="whatJoinOrder">&gt; 당신의 차례를 선택하세요. 다른 사람과 중복되지 않도록 주의하세요.</p>
+          <div class="orderBtnGroup">
+            <div>
+              <button class="orderBtn" value="2">2nd</button>
+              <button class="orderBtn" value="3">3rd</button>
+              <button class="orderBtn" value="4">4th</button>
+              <button class="orderBtn" value="5">5th</button>
+            </div>
+            <div>
+              <button class="orderBtn" value="6">6th</button>
+              <button class="orderBtn" value="7">7th</button>
+              <button class="orderBtn" value="8">8th</button>
+              <button class="orderBtn" value="9">9th</button>
+            </div>
+          </div>
+          <p class="whatYourOrder">
+            &gt; 게임 개설자는 <button class="orderBtn" value="1">1st</button>의 순서를 받습니다.
+          </p>
+        </div>
+        <button class="joinBtn">참가</button>
+      </section>
+
+      <section class="main hide">
+        <p class="thisRound"><span class="order">1</span>번째 게임</p>
+        <div class="cardTray">
+          <button class="leftCard">&lt;</button>
+          <div class="cardSet">
+            <div class="card">1</div>
+          </div>
+          <button class="rightCard">&gt;</button>
+        </div>
+        <p class="youArePD">You are PD!</p>
+      </section>
+
       <footer>
-        <p class="error">보드게임 탑텐TV의 카드 셔플기입니다.</p>
-        <div>
-          <p>ID:</p>
-          <input type="text" id="remindInput" autocomplete="off" maxlength="88" />
-        </div>
-        <div>
-          <button id="shuffleBtn">shuffle</button>
-          <p>OR</p>
-          <button id="remindBtn">recall</button>
-        </div>
+        <section class="selectCreateOrJoin">
+          <button class="createTabBtn select">Create</button>
+          <button class="joinTabBtn">Join</button>
+        </section>
+
+        <section class="thisIDtab hide">
+          <p>ID :</p>
+          <input type="text" class="thisID" autocomplete="off" readonly />
+        </section>
       </footer>
     </div>
   </body>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
   <script src="script.js"></script>
 </html>
