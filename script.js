@@ -148,7 +148,7 @@ function pageMain(arrs, order, ID) {
     }
   });
   document.querySelector(".rightCard").addEventListener("click", () => {
-    if (nowOrder < arrs.length) {
+    if (nowOrder - 1 < arrs.length) {
       addClassToElement(cardset.item(nowOrder - 1));
       nowOrder++;
       removeClassToElement(cardset.item(nowOrder - 1));
@@ -174,6 +174,7 @@ function paintCard(arrs, order) {
         addClassToElement(cardset.item(i));
       }
     }
+    h
   } catch (err) {
     document.querySelector(".card").textContent = "잘못된 ID입니다. 다시 처음부터 시도해주세요.";
   }
