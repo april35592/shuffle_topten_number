@@ -1,14 +1,9 @@
 openHTML();
 
 function openHTML() {
-  header();
-  footer();
-  pageCreateOrJoin();
-}
-
-function header() {
   titleBtn();
   howBtn();
+  pageCreateOrJoin();
 }
 
 function titleBtn() {
@@ -69,18 +64,11 @@ function createGame() {
   });
 
   document.querySelector(".createBtn").addEventListener("click", () => {
-    const yourOrder = 1;
     const numbers = [];
     for (let i = 0; i < maxNumber; i++) {
       numbers.push(arrayShuffle(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]));
     }
-    addThisID(encrypt(numbers));
-
-    addClassToElement(document.querySelector(".create"));
-    removeClassToElement(document.querySelector(".main"));
-    addClassToElement(document.querySelector(".selectCreateOrJoin"));
-    removeClassToElement(document.querySelector(".thisIDtab"));
-    paintCard(numbers);
+    pageMain(numbers, 1, encrypt(numbers));
   });
 }
 
@@ -92,14 +80,21 @@ function joinGame() {
 
   document.querySelector(".joinInput").addEventListener("input", () => {
     try {
-      decrypt(document.querySelector(".joinInput").value);
+      numbers = decrypt(document.querySelector(".joinInput").value);
       addClassToElement(document.querySelector(".whatJoinID"));
       error = false;
+      removeClassToElement(document.querySelector(".whatOrder"));
+      for (let i = 0; i < orderBtns.length; i++) {
+        if (orderBtns.item(i).value > numbers.length) {
+          orderBtns.item(i).classList.add("disabled");
+        }
+      }
     } catch {
-      document.querySelector(".whatJoinID").textContent = "> 참가하시려는 게임의 id를 입력해주세요. 잘못된 코드입니다.";
+      document.querySelector(".whatJoinID").textContent = "> 참가하시려는 게임의 id를 입력해주세요. 잘못된 ID입니다.";
       removeClassToElement(document.querySelector(".whatJoinID"));
       numbers = [];
       error = true;
+      addClassToElement(document.querySelector(".whatOrder"));
     }
   });
 
@@ -115,29 +110,73 @@ function joinGame() {
   }
 
   document.querySelector(".joinBtn").addEventListener("click", () => {
-    if (!error && order != -1) {
-      addThisID(document.querySelector(".joinInput").value);
-      paintCard(decrypt(document.querySelector(".joinInput").value), order);
-
-      addClassToElement(document.querySelector(".join"));
-      removeClassToElement(document.querySelector(".main"));
-      addClassToElement(document.querySelector(".selectCreateOrJoin"));
-      removeClassToElement(document.querySelector(".thisIDtab"));
+    if (!error && order != -1 && order <= numbers.length) {
+      pageMain(numbers, order, document.querySelector(".joinInput").value);
     }
   });
 }
 
-function addThisID(value) {
-  document.querySelector(".thisID").value = value;
-  document.querySelector(".thisID").setAttribute("data-clipboard-text", value);
-}
-
-function paintCard(arrs, order = 1) {
-  document.querySelector(".card").textContent = arrs[order - 1][0];
-}
-
-function footer() {
+function pageMain(arrs, order, ID) {
   const clipboard = new ClipboardJS(".thisID");
+  let nowOrder = 1;
+  document.querySelector(".thisID").value = ID;
+  document.querySelector(".thisID").setAttribute("data-clipboard-text", ID);
+  paintCard(arrs, order);
+  const cardset = document.getElementsByClassName("card");
+
+  addClassToElement(document.querySelector(".create"));
+  addClassToElement(document.querySelector(".join"));
+  removeClassToElement(document.querySelector(".main"));
+  addClassToElement(document.querySelector(".selectCreateOrJoin"));
+  removeClassToElement(document.querySelector(".thisIDtab"));
+
+  if (order != 1) {
+    addClassToElement(document.querySelector(".youArePD"));
+  }
+
+  document.querySelector(".leftCard").addEventListener("click", () => {
+    if (nowOrder > 1) {
+      addClassToElement(cardset.item(nowOrder - 1));
+      nowOrder--;
+      removeClassToElement(cardset.item(nowOrder - 1));
+      document.querySelector(".order").textContent = nowOrder;
+      if (order === nowOrder) {
+        removeClassToElement(document.querySelector(".youArePD"));
+      } else {
+        addClassToElement(document.querySelector(".youArePD"));
+      }
+    }
+  });
+  document.querySelector(".rightCard").addEventListener("click", () => {
+    if (nowOrder < arrs.length) {
+      addClassToElement(cardset.item(nowOrder - 1));
+      nowOrder++;
+      removeClassToElement(cardset.item(nowOrder - 1));
+      document.querySelector(".order").textContent = nowOrder;
+      if (order != nowOrder) {
+        addClassToElement(document.querySelector(".youArePD"));
+      } else {
+        removeClassToElement(document.querySelector(".youArePD"));
+      }
+    }
+  });
+}
+
+function paintCard(arrs, order) {
+  try {
+    for (let i = 1; i < arrs.length; i++) {
+      document.querySelector(".cardSet").append(document.querySelector(".card").cloneNode(true));
+    }
+    const cardset = document.getElementsByClassName("card");
+    for (let i = 0; i < cardset.length; i++) {
+      cardset.item(i).textContent = arrs[i][order - 1];
+      if (i != 0) {
+        addClassToElement(cardset.item(i));
+      }
+    }
+  } catch (err) {
+    document.querySelector(".card").textContent = "잘못된 ID입니다. 다시 처음부터 시도해주세요.";
+  }
 }
 
 function encrypt(arr) {

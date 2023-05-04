@@ -183,6 +183,10 @@ p > .orderBtn {
   display: inline;
 }
 
+.whatOrder {
+  width: 100%;
+}
+
 .orderBtnGroup > div:nth-child(2n + 1) > .orderBtn:nth-child(2n),
 .orderBtnGroup > div:nth-child(2n) > .orderBtn:nth-child(2n + 1) {
   color: black;
@@ -202,6 +206,13 @@ p > .orderBtn {
   border: 2px solid lightpink;
   color: black;
   box-shadow: inset 0 0 0 3px black;
+}
+
+.orderBtnGroup > div > .orderBtn.disabled {
+  background-color: darkgrey !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: lightgrey !important;
 }
 
 p > .orderBtn.select {
@@ -269,6 +280,10 @@ p > .orderBtn.select {
   justify-content: center;
   align-items: center;
   margin: 20px 0;
+}
+
+.cardSet {
+  display: flex;
 }
 
 .card {

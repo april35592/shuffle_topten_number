@@ -43,32 +43,36 @@
           <p>id :</p>
           <input type="text" class="joinInput" autocomplete="off" />
         </div>
-        <p class="whatJoinOrder">&gt; 당신의 차례를 선택하세요. 다른 사람과 중복되지 않도록 주의하세요.</p>
-        <div class="orderBtnGroup">
-          <div>
-            <button class="orderBtn" value="2">2nd</button>
-            <button class="orderBtn" value="3">3rd</button>
-            <button class="orderBtn" value="4">4th</button>
-            <button class="orderBtn" value="5">5th</button>
+        <div class="whatOrder hide">
+          <p class="whatJoinOrder">&gt; 당신의 차례를 선택하세요. 다른 사람과 중복되지 않도록 주의하세요.</p>
+          <div class="orderBtnGroup">
+            <div>
+              <button class="orderBtn" value="2">2nd</button>
+              <button class="orderBtn" value="3">3rd</button>
+              <button class="orderBtn" value="4">4th</button>
+              <button class="orderBtn" value="5">5th</button>
+            </div>
+            <div>
+              <button class="orderBtn" value="6">6th</button>
+              <button class="orderBtn" value="7">7th</button>
+              <button class="orderBtn" value="8">8th</button>
+              <button class="orderBtn" value="9">9th</button>
+            </div>
           </div>
-          <div>
-            <button class="orderBtn" value="6">6th</button>
-            <button class="orderBtn" value="7">7th</button>
-            <button class="orderBtn" value="8">8th</button>
-            <button class="orderBtn" value="9">9th</button>
-          </div>
+          <p class="whatYourOrder">
+            &gt; 게임 개설자는 <button class="orderBtn" value="1">1st</button>의 순서를 받습니다.
+          </p>
         </div>
-        <p class="whatYourOrder">
-          &gt; 게임 개설자는 <button class="orderBtn" value="1">1st</button>의 순서를 받습니다.
-        </p>
         <button class="joinBtn">참가</button>
       </section>
 
       <section class="main hide">
-        <p class="thisRound">1st Game</p>
+        <p class="thisRound"><span class="order">1</span>번째 게임</p>
         <div class="cardTray">
           <button class="leftCard">&lt;</button>
-          <div class="card">1</div>
+          <div class="cardSet">
+            <div class="card">1</div>
+          </div>
           <button class="rightCard">&gt;</button>
         </div>
         <p class="youArePD">You are PD!</p>
