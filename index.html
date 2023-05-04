@@ -29,10 +29,10 @@
 
       <section class="create">
         <p>인원수</p>
-        <div class="setNumber">
-          <button class="setNumberMinus">-</button>
-          <div class="setNumberNow">3</div>
-          <button class="setNumberPlus">+</button>
+        <div class="setOrderNumber">
+          <button class="setOrderNumberMinus">-</button>
+          <div class="setOrderNumberNow">3</div>
+          <button class="setOrderNumberPlus">+</button>
         </div>
         <button class="createBtn">게임 생성</button>
       </section>
@@ -41,16 +41,9 @@
         <p class="whatJoinID">&gt; 참가하시려는 게임의 id를 입력해주세요.</p>
         <div class="joinInputTray">
           <p>id :</p>
-          <input type="text" class="joinInput" autocomplete="off" maxlength="88" />
+          <input type="text" class="joinInput" autocomplete="off" />
         </div>
-        <button class="joinBtn">참가</button>
-      </section>
-
-      <section class="selectYourOrder hide">
-        <div class="whatYourOrder">
-          <p>&gt; 당신의 차례를 선택하세요. 다른 사람과 중복되지 않도록 주의하세요.</p>
-          <p>&gt; 게임 개설자는 1st의 순서를 받습니다.</p>
-        </div>
+        <p class="whatJoinOrder">&gt; 당신의 차례를 선택하세요. 다른 사람과 중복되지 않도록 주의하세요.</p>
         <div class="orderBtnGroup">
           <div>
             <button class="orderBtn" value="2">2nd</button>
@@ -65,20 +58,20 @@
             <button class="orderBtn" value="9">9th</button>
           </div>
         </div>
+        <p class="whatYourOrder">
+          &gt; 게임 개설자는 <button class="orderBtn" value="1">1st</button>의 순서를 받습니다.
+        </p>
+        <button class="joinBtn">참가</button>
       </section>
 
       <section class="main hide">
-        <div class="thisRound">
-          <p>1st Game</p>
-        </div>
+        <p class="thisRound">1st Game</p>
         <div class="cardTray">
           <button class="leftCard">&lt;</button>
           <div class="card">1</div>
           <button class="rightCard">&gt;</button>
         </div>
-        <div class="youArePD">
-          <p>You are PD!</p>
-        </div>
+        <p class="youArePD">You are PD!</p>
       </section>
 
       <footer>
@@ -89,11 +82,12 @@
 
         <section class="thisIDtab hide">
           <p>ID :</p>
-          <input type="text" class="thisID" autocomplete="off" maxlength="88" readonly />
+          <input type="text" class="thisID" autocomplete="off" readonly />
         </section>
       </footer>
     </div>
   </body>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
   <script src="script.js"></script>
 </html>
