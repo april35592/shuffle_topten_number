@@ -174,7 +174,6 @@ function paintCard(arrs, order) {
         addClassToElement(cardset.item(i));
       }
     }
-    h
   } catch (err) {
     document.querySelector(".card").textContent = "잘못된 ID입니다. 다시 처음부터 시도해주세요.";
   }
