@@ -148,7 +148,7 @@ function pageMain(arrs, order, ID) {
     }
   });
   document.querySelector(".rightCard").addEventListener("click", () => {
-    if (nowOrder - 1 < arrs.length) {
+    if (nowOrder < arrs.length) {
       addClassToElement(cardset.item(nowOrder - 1));
       nowOrder++;
       removeClassToElement(cardset.item(nowOrder - 1));
