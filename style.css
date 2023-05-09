@@ -15,7 +15,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightpink;
+  background-color: white;
+  background: linear-gradient(to right, #7ee8fa, #eec0c6);
 }
 
 #container {
@@ -45,14 +46,20 @@ footer {
   align-items: center;
 }
 
-h1 {
+.titlebox {
   width: 100%;
   padding: 20px;
+  background-color: black;
+}
+
+h1 {
   font-size: 45px;
   font-family: Black Han Sans;
-  color: lightpink;
-  background-color: black;
+  color: white;
   text-align: center;
+  background: linear-gradient(to right, #7ee8fa, #eec0c6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 h2 {
@@ -90,8 +97,8 @@ h2 {
   height: 40px;
   border-radius: 50%;
   background-color: black;
-  color: lightpink;
-  box-shadow: inset 0 0 0 3px black, inset 0 0 0 5px lightpink;
+  color: white;
+  box-shadow: inset 0 0 0 3px black, inset 0 0 0 5px white;
   font-size: x-large;
   margin: 5px;
 }
@@ -104,7 +111,7 @@ h2 {
 }
 
 .thisIDtab p {
-  color: lightpink;
+  color: white;
 }
 
 .thisID {
@@ -113,8 +120,11 @@ h2 {
   margin: 10px;
   border-radius: 15px;
   background-color: black;
-  color: lightpink;
-  border: 3px solid lightpink;
+  color: white;
+  border: 3px solid white;
+  background: linear-gradient(to right, #7ee8fa, #eec0c6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .selectCreateOrJoin {
@@ -137,15 +147,30 @@ h2 {
 .joinTabBtn {
   width: 50%;
   height: 75px;
-  background-color: lightpink;
   color: black;
 }
 
-.createTabBtn.select,
+.createTabBtn {
+  background-color: #7ee8fa;
+  background: linear-gradient(to right, rgb(126, 232, 250), rgb(182, 212, 224));
+}
+.joinTabBtn {
+  background-color: #eec0c6;
+  background: linear-gradient(to right, rgb(182, 212, 224), rgb(238, 192, 198));
+}
+
+.createTabBtn.select {
+  background-color: black;
+  background: none;
+  color: #7ee8fa;
+  box-shadow: inset 0 0 0 3px black, inset 0 0 0 5px #7ee8fa;
+}
+
 .joinTabBtn.select {
   background-color: black;
-  color: lightpink;
-  box-shadow: inset 0 0 0 3px black, inset 0 0 0 5px lightpink;
+  background: none;
+  color: #eec0c6;
+  box-shadow: inset 0 0 0 3px black, inset 0 0 0 5px #eec0c6;
 }
 
 .whatYourOrder,
@@ -169,7 +194,7 @@ h2 {
 .orderBtn {
   width: 25%;
   height: 80px;
-  color: lightpink;
+  color: white;
   background-color: black;
   display: flex;
   justify-content: center;
@@ -191,33 +216,26 @@ p > .orderBtn {
 .orderBtnGroup > div:nth-child(2n + 1) > .orderBtn:nth-child(2n),
 .orderBtnGroup > div:nth-child(2n) > .orderBtn:nth-child(2n + 1) {
   color: black;
-  background-color: lightpink;
+  background-color: white;
 }
 
 .orderBtnGroup > div > .orderBtn.select {
   background-color: black;
   border: 3px solid black;
-  color: lightpink;
-  box-shadow: inset 0 0 0 2px lightpink;
+  color: white;
+  box-shadow: inset 0 0 0 2px white;
 }
 
 .orderBtnGroup > div:nth-child(2n + 1) > .orderBtn.select:nth-child(2n),
 .orderBtnGroup > div:nth-child(2n) > .orderBtn.select:nth-child(2n + 1) {
-  background-color: lightpink;
-  border: 2px solid lightpink;
+  background-color: white;
+  border: 2px solid white;
   color: black;
   box-shadow: inset 0 0 0 3px black;
 }
 
-.orderBtnGroup > div > .orderBtn.disabled {
-  background-color: darkgrey !important;
-  border: none !important;
-  box-shadow: none !important;
-  color: lightgrey !important;
-}
-
 p > .orderBtn.select {
-  color: lightpink;
+  color: white;
 }
 
 .setOrderNumber {
@@ -240,8 +258,8 @@ p > .orderBtn.select {
   margin: 10px;
   border-radius: 15px;
   background-color: black;
-  color: lightpink;
-  box-shadow: inset 0 0 0 3px black, inset 0 0 0 5px lightpink;
+  color: white;
+  box-shadow: inset 0 0 0 3px black, inset 0 0 0 5px white;
 }
 
 .howCloseBtn {
@@ -297,10 +315,11 @@ p > .orderBtn.select {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.5), inset 0 0 0 2px lightpink, inset 0 0 0 5px black;
+  box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.5), inset 0 0 0 5px black;
   font-size: xx-large;
   font-family: Black Han Sans;
-  background-color: lightpink;
+  background-color: white;
+  background: linear-gradient(to right, #7ee8fa, #eec0c6);
   color: black;
 }
 
@@ -336,7 +355,7 @@ p > .orderBtn.select {
 
 .howArticle {
   width: 100%;
-  height: 400px;
+  height: 440px;
   padding: 20px;
   overflow-y: auto;
 }
