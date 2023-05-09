@@ -57,6 +57,7 @@ h1 {
 
 h2 {
   font-size: x-large;
+  text-align: center;
 }
 
 .create,
@@ -335,7 +336,9 @@ p > .orderBtn.select {
 
 .howArticle {
   width: 100%;
+  height: 400px;
   padding: 20px;
+  overflow-y: auto;
 }
 
 .whatJoinID {
@@ -353,6 +356,10 @@ p > .orderBtn.select {
 
 .hide {
   display: none;
+}
+
+.howArticle > p {
+  margin: 10px 0;
 }
 
 @media (max-width: 600px) {
