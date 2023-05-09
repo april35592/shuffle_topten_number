@@ -170,6 +170,9 @@ function paintCard(arrs, order) {
     const cardset = document.getElementsByClassName("card");
     for (let i = 0; i < cardset.length; i++) {
       cardset.item(i).textContent = arrs[i][order - 1];
+      if (arrs.length === 9 && i === order - 1) {
+        cardset.item(i).textContent = `X`;
+      }
       if (i != 0) {
         addClassToElement(cardset.item(i));
       }
