@@ -12,8 +12,6 @@
 
 
 <img width="850" alt="first - create page" src="https://user-images.githubusercontent.com/77724156/237050746-59c59c5b-3d71-46d2-8a19-d40722705465.png">
-
 <img width="850" alt="join page" src="https://github.com/april35592/shuffle_topten_number/assets/77724156/d03a3470-a593-4cb8-a595-2a07a36df132">
-
 <img width="850" alt="modal - how to" src="https://github.com/april35592/shuffle_topten_number/assets/77724156/3ec114eb-a9c2-4a15-83cd-28ba40a30abc">
-<img width="850" alt="play page" src="https://github.com/april35592/shuffle_topten_number/assets/77724156/e1d606d7-75e8-43fc-afa8-d172f1a293e4">
+<img width="1470" alt="play page" src="https://github.com/april35592/shuffle_topten_number/assets/77724156/e8b33952-55b0-4e6d-91b7-3c512e33591a">
