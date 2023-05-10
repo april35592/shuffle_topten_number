@@ -235,7 +235,14 @@ p > .orderBtn {
 }
 
 p > .orderBtn.select {
-  color: white;
+  color: rgb(182, 212, 224);
+}
+
+.orderBtnGroup > div > .orderBtn.disabled {
+  background-color: grey;
+  color: darkgrey;
+  box-shadow: unset !important;
+  border: unset;
 }
 
 .setOrderNumber {
