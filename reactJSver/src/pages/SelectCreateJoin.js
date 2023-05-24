@@ -7,7 +7,7 @@ const SelectCreateJoin = ({ tabSwitch }) => {
   const [now, setNow] = useState("create");
   const clickBtn = (e) => {
     tabSwitch(e.target.value);
-    if (now != e.target.value) {
+    if (now !== e.target.value) {
       setNow(e.target.value);
       createBtn.current.classList.toggle("select");
       joinBtn.current.classList.toggle("select");

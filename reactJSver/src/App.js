@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import How_to from "./pages/HowTo";
+import HowTo from "./pages/HowTo";
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
 import Create from "./pages/Create";
@@ -65,7 +65,7 @@ function App() {
 
   return (
     <div className="App">
-      <How_to how={how} closeHow={closeHow} />
+      <HowTo how={how} closeHow={closeHow} />
       <div className="container">
         <Header backHome={backHome} openHow={openHow} />
         {nowTab === "create" ? (
