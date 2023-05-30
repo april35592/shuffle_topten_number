@@ -16,6 +16,7 @@
   background-color: #7ee8fa;
   background: linear-gradient(to right, rgb(126, 232, 250), rgb(182, 212, 224));
 }
+
 .joinTabBtn {
   background-color: #eec0c6;
   background: linear-gradient(to right, rgb(182, 212, 224), rgb(238, 192, 198));
@@ -26,6 +27,7 @@
   background: none;
   background-color: black;
 }
+
 .createTabBtn.select {
   color: #7ee8fa;
   box-shadow: inset 0 0 0 3px black, inset 0 0 0 5px #7ee8fa;

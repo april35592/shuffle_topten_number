@@ -154,21 +154,24 @@ h2 {
   background-color: #7ee8fa;
   background: linear-gradient(to right, rgb(126, 232, 250), rgb(182, 212, 224));
 }
+
 .joinTabBtn {
   background-color: #eec0c6;
   background: linear-gradient(to right, rgb(182, 212, 224), rgb(238, 192, 198));
 }
 
-.createTabBtn.select {
-  background-color: black;
+.createTabBtn.select,
+.joinTabBtn.select {
   background: none;
+  background-color: black;
+}
+
+.createTabBtn.select {
   color: #7ee8fa;
   box-shadow: inset 0 0 0 3px black, inset 0 0 0 5px #7ee8fa;
 }
 
 .joinTabBtn.select {
-  background-color: black;
-  background: none;
   color: #eec0c6;
   box-shadow: inset 0 0 0 3px black, inset 0 0 0 5px #eec0c6;
 }
@@ -243,6 +246,12 @@ p > .orderBtn.select {
   color: darkgrey;
   box-shadow: unset !important;
   border: unset;
+}
+
+.orderBtnGroup > div:nth-child(2n + 1) > .orderBtn.disabled:nth-child(2n),
+.orderBtnGroup > div:nth-child(2n) > .orderBtn.disabled:nth-child(2n + 1) {
+  background-color: darkgrey;
+  color: grey;
 }
 
 .setOrderNumber {
