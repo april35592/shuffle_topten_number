@@ -15,8 +15,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
-  background: linear-gradient(to right, #7ee8fa, #eec0c6);
+  background-color: black;
 }
 
 #container {
