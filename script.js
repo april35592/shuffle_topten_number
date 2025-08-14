@@ -80,7 +80,18 @@ function joinGame() {
 
   document.querySelector(".joinInput").addEventListener("input", () => {
     try {
-      numbers = decrypt(document.querySelector(".joinInput").value);
+      const str = decrypt(document.querySelector(".joinInput").value);  
+      for (let i = 0; i < Number(str.substring(0, 1)); i++) {
+        numbers.push([])
+        for (let j = 0; j < 10; j++) {
+          if(str.substring(10*i+j+1,10*i+j+2) === "0") {
+            numbers[i].push("10")
+          } else {
+            numbers[i].push(str.substring(i*10+j+1, 10*i+j+2))
+          }
+        }
+      }
+      
       addClassToElement(document.querySelector(".whatJoinID"));
       error = false;
       removeClassToElement(document.querySelector(".whatOrder"));
@@ -183,7 +194,31 @@ function paintCard(arrs, order) {
 }
 
 function encrypt(arr) {
-  return CryptoJS.AES.encrypt(JSON.stringify(arr), "").toString();
+  let str = arr.length.toString()
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < 10; j++) {
+      if (arr[i][j] === "10") {
+        str += "0"
+      } else {
+        str += arr[i][j].toString()
+      }
+    }
+  }
+
+  const newarr = []
+  const num = Number(str.substring(0, 1))
+  for (let i = 0; i < num; i++) {
+    newarr.push([])
+    for (let j = 0; j < 10; j++) {
+      if(str.substring(10*i+j+1,10*i+j+2) === "0") {
+        newarr[i].push("10")
+      } else {
+        newarr[i].push(str.substring(i*10+j+1, 10*i+j+2))
+      }
+    }
+  }
+  console.log(CryptoJS.AES.encrypt(JSON.stringify(str), "").toString())
+  return CryptoJS.AES.encrypt(JSON.stringify(str), "").toString();
 }
 
 function decrypt(string) {
