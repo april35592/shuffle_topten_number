@@ -1,5 +1,7 @@
 openHTML();
 
+base62Chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
 function openHTML() {
   titleBtn();
   howBtn();
@@ -19,7 +21,7 @@ function howBtn() {
   document.querySelector(".howCloseBtn").addEventListener("click", () => {
     addClassToElement(document.querySelector(".howTo"));
   });
-  document.querySelector(".howTo").addEventListener("click", e => {
+  document.querySelector(".howTo").addEventListener("click", (e) => {
     if (e.target === document.querySelector(".howTo")) {
       addClassToElement(document.querySelector(".howTo"));
     }
@@ -50,25 +52,31 @@ function tabCreateOrJoin() {
 function createGame() {
   let maxNumber = 3;
 
-  document.querySelector(".setOrderNumberMinus").addEventListener("click", () => {
-    if (maxNumber > 3) {
-      maxNumber -= 1;
-      document.querySelector(".setOrderNumberNow").textContent = maxNumber;
-    }
-  });
-  document.querySelector(".setOrderNumberPlus").addEventListener("click", () => {
-    if (maxNumber < 9) {
-      maxNumber += 1;
-      document.querySelector(".setOrderNumberNow").textContent = maxNumber;
-    }
-  });
+  document
+    .querySelector(".setOrderNumberMinus")
+    .addEventListener("click", () => {
+      if (maxNumber > 3) {
+        maxNumber -= 1;
+        document.querySelector(".setOrderNumberNow").textContent = maxNumber;
+      }
+    });
+  document
+    .querySelector(".setOrderNumberPlus")
+    .addEventListener("click", () => {
+      if (maxNumber < 9) {
+        maxNumber += 1;
+        document.querySelector(".setOrderNumberNow").textContent = maxNumber;
+      }
+    });
 
   document.querySelector(".createBtn").addEventListener("click", () => {
     const numbers = [];
     for (let i = 0; i < maxNumber; i++) {
-      numbers.push(arrayShuffle(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]));
+      numbers.push(
+        arrayShuffle(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"])
+      );
     }
-    pageMain(numbers, 1, encrypt(numbers));
+    pageMain(numbers, 1, encrypt(arrToNum(numbers)));
   });
 }
 
@@ -79,29 +87,40 @@ function joinGame() {
   const orderBtns = document.getElementsByClassName("orderBtn");
 
   document.querySelector(".joinInput").addEventListener("input", () => {
-    try {
-      const str = decrypt(document.querySelector(".joinInput").value);  
-      for (let i = 0; i < Number(str.substring(0, 1)); i++) {
-        numbers.push([])
-        for (let j = 0; j < 10; j++) {
-          if(str.substring(10*i+j+1,10*i+j+2) === "0") {
-            numbers[i].push("10")
-          } else {
-            numbers[i].push(str.substring(i*10+j+1, 10*i+j+2))
+    if (document.querySelector(".joinInput").value != "") {
+      try {
+        const str = decrypt(
+          document.querySelector(".joinInput").value
+        ).toString();
+        for (let i = 0; i < Number(str.substring(0, 1)); i++) {
+          numbers.push([]);
+          for (let j = 0; j < 10; j++) {
+            if (str.substring(10 * i + j + 1, 10 * i + j + 2) === "0") {
+              numbers[i].push("10");
+            } else {
+              numbers[i].push(str.substring(i * 10 + j + 1, 10 * i + j + 2));
+            }
           }
         }
-      }
-      
-      addClassToElement(document.querySelector(".whatJoinID"));
-      error = false;
-      removeClassToElement(document.querySelector(".whatOrder"));
-      for (let i = 0; i < orderBtns.length; i++) {
-        if (orderBtns.item(i).value > numbers.length) {
-          orderBtns.item(i).classList.add("disabled");
+
+        addClassToElement(document.querySelector(".whatJoinID"));
+        error = false;
+        removeClassToElement(document.querySelector(".whatOrder"));
+        for (let i = 0; i < orderBtns.length; i++) {
+          if (orderBtns.item(i).value > numbers.length) {
+            orderBtns.item(i).classList.add("disabled");
+          }
         }
+      } catch {
+        document.querySelector(".whatJoinID").textContent =
+          "> 참가하시려는 게임의 id를 입력해주세요. 잘못된 ID입니다.";
+        removeClassToElement(document.querySelector(".whatJoinID"));
+        numbers = [];
+        error = true;
+        addClassToElement(document.querySelector(".whatOrder"));
       }
-    } catch {
-      document.querySelector(".whatJoinID").textContent = "> 참가하시려는 게임의 id를 입력해주세요. 잘못된 ID입니다.";
+    } else {
+      document.querySelector(".whatJoinID").textContent = "";
       removeClassToElement(document.querySelector(".whatJoinID"));
       numbers = [];
       error = true;
@@ -110,7 +129,7 @@ function joinGame() {
   });
 
   for (let i = 0; i < orderBtns.length; i++) {
-    orderBtns.item(i).addEventListener("click", e => {
+    orderBtns.item(i).addEventListener("click", (e) => {
       for (let j = 0; j < orderBtns.length; j++) {
         removeClassToElement(orderBtns.item(j), "select");
       }
@@ -176,7 +195,9 @@ function pageMain(arrs, order, ID) {
 function paintCard(arrs, order) {
   try {
     for (let i = 1; i < arrs.length; i++) {
-      document.querySelector(".cardSet").append(document.querySelector(".card").cloneNode(true));
+      document
+        .querySelector(".cardSet")
+        .append(document.querySelector(".card").cloneNode(true));
     }
     const cardset = document.getElementsByClassName("card");
     for (let i = 0; i < cardset.length; i++) {
@@ -189,26 +210,47 @@ function paintCard(arrs, order) {
       }
     }
   } catch (err) {
-    document.querySelector(".card").textContent = "잘못된 ID입니다. 다시 처음부터 시도해주세요.";
+    document.querySelector(".card").textContent =
+      "잘못된 ID입니다. 다시 처음부터 시도해주세요.";
   }
 }
 
-function encrypt(arr) {
-  let str = arr.length.toString()
+function arrToNum(arr) {
+  let str = arr.length.toString();
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < 10; j++) {
       if (arr[i][j] === "10") {
-        str += "0"
+        str += "0";
       } else {
-        str += arr[i][j].toString()
+        str += arr[i][j].toString();
       }
     }
   }
-  return CryptoJS.AES.encrypt(JSON.stringify(str), "").toString();
+  console.log(str);
+  return str;
 }
 
-function decrypt(string) {
-  return JSON.parse(CryptoJS.AES.decrypt(string, "").toString(CryptoJS.enc.Utf8));
+function encrypt(str) {
+  let num = BigInt(str);
+  let result = "";
+  while (num > 0) {
+    result = base62Chars[Number(num % 62n)] + result;
+    num = num / 62n;
+  }
+  return result;
+}
+
+function decrypt(str) {
+  let result = 0n;
+  for (let i = 0; i < str.length; i++) {
+    const value = base62Chars.indexOf(str[i]);
+    if (value === -1) {
+      throw new Error(`Invalid Base62 character: '${str[i]}'`);
+    }
+    result = result * 62n + BigInt(value);
+  }
+  console.log(result);
+  return result;
 }
 
 function arrayShuffle(array) {
