@@ -204,20 +204,6 @@ function encrypt(arr) {
       }
     }
   }
-
-  const newarr = []
-  const num = Number(str.substring(0, 1))
-  for (let i = 0; i < num; i++) {
-    newarr.push([])
-    for (let j = 0; j < 10; j++) {
-      if(str.substring(10*i+j+1,10*i+j+2) === "0") {
-        newarr[i].push("10")
-      } else {
-        newarr[i].push(str.substring(i*10+j+1, 10*i+j+2))
-      }
-    }
-  }
-  console.log(CryptoJS.AES.encrypt(JSON.stringify(str), "").toString())
   return CryptoJS.AES.encrypt(JSON.stringify(str), "").toString();
 }
 
